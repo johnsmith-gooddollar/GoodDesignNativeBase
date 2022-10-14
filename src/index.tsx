@@ -1,27 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { NativeBaseProvider, extendTheme } from "native-base";
+import { createRoot } from "react-dom/client";
+import { NativeBaseProvider } from "native-base";
+
+import App from "./components/App/App";
+import { theme } from "./theme/theme";
 import reportWebVitals from "./reportWebVitals";
 
-const theme = extendTheme({
-  config: {
-    initialColorMode: "dark",
-  },
-});
+const root = createRoot(document.getElementById("root"))
 
-// extend the theme
-type MyThemeType = typeof theme;
-declare module "native-base" {
-  interface ICustomTheme extends MyThemeType {}
-}
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <NativeBaseProvider theme={theme}>
       <App />
     </NativeBaseProvider>
   </React.StrictMode>,
-  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
